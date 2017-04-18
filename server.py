@@ -17,6 +17,33 @@ MEAN_WORDS = [
   'a loser', 'horrible', 'not good', 'a butt-face', 'a butt-wipe', 'bad', 'dumb', 'silly-brain' 
 ]
 
+stylestuff = """<style>
+                .rainbow {
+                -webkit-box-sizing: content-box;
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+                cursor: pointer;
+                border: none;
+                font: normal normal bold 70px/normal "Bad Script", Helvetica, sans-serif;
+                color: rgba(0, 0, 0, 0);
+                text-align: center;
+                -o-text-overflow: clip;
+                text-overflow: clip;
+                text-shadow: 3px 0 0 rgb(217,31,38) , 6px 0 0 rgb(226,91,14) , 9px 0 0 rgb(245,221,8) , 12px 0 0 rgb(5,148,68) , 15px 0 0 rgb(2,135,206) , 18px 0 0 rgb(4,77,145) , 21px 0 0 rgb(42,21,113) ;
+                -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+              }
+              
+              .rainbow:hover {
+                text-shadow: -3px 0 0 rgb(217,31,38) , -6px 0 0 rgb(226,91,14) , -9px 0 0 rgb(245,221,8) , -12px 0 0 rgb(5,148,68) , -15px 0 0 rgb(2,135,206) , -18px 0 0 rgb(4,77,145) , -21px 0 0 rgb(42,21,113) ;
+                -webkit-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                -moz-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                -o-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+              } 
+        </style>"""
 def select_compliment(compliments):
     option_values = []
     for i in compliments:
@@ -95,19 +122,23 @@ def greet_person():
     player = request.args.get("person")
     compliment = request.args.get("compliment")
 
+
+
     # compliment = choice(AWESOMENESS)
 
     return """
     <!doctype html>
     <html>
       <head>
+      <link async href="http://fonts.googleapis.com/css?family=Bad%20Script" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
         <title>A Compliment</title>
+{style}
       </head>
       <body>
-        <div><p>Hi, {player}! I think you're {compliment}!</p></div>
+        <div><p class="rainbow">Hi, {player}! I think you're {compliment}!</p></div>
       </body>
     </html>
-    """.format(player=player.title(), compliment=compliment)
+    """.format(player=player.title(), compliment=compliment, style=stylestuff)
 
 
 if __name__ == '__main__':
